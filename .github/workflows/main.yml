@@ -6,9 +6,16 @@ on:
   push:
     branches:
     - main
+  # schedule:
+    # * is a special character in YAML so you have to quote this string
+    # - cron:  '30 5,17 * * *'
     
 # on: push    # Default will running for every branch.
-    
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     # This job will run on windows virtual machine
@@ -30,6 +37,7 @@ jobs:
     # Get flutter dependencies.
     - run: flutter clean
     - run: flutter pub get
+    - run: flutter analyze
     
     # Build apk.
     - run: flutter build apk --release
@@ -39,3 +47,4 @@ jobs:
       with:
         name: main_release_app
         path: build/app/outputs/flutter-apk/app-release.apk
+        
