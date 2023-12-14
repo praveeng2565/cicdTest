@@ -17,7 +17,7 @@ jobs:
     - uses: subosito/flutter-action@v1
       with:
         channel: 'stable'
-        flutter-version: '3.13.6'
+        flutter-version: '3.16.3'
     - run: flutter pub get
     - run: flutter build apk --release
     - name: Push APK to Releases
