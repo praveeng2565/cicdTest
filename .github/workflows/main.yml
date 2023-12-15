@@ -43,9 +43,12 @@ jobs:
     - run: flutter build apk --release
     
     # Upload generated apk to the artifacts.
-    - uses: actions/upload-artifact@v1
+    # - uses: actions/upload-artifact@v1
+    #   with:
+    #     name: main_release_app
+    #     path: build/app/outputs/flutter-apk/app-release.apk
+    - name: Download APK
+      uses: actions/download-artifact@v2
       with:
-        name: main_release_app
-        path: build/app/outputs/flutter-apk/app-release.apk
-        # 
-        
+        name: app-release
+        path: D:\apk_download\
