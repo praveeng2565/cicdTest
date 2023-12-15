@@ -2,7 +2,7 @@ name: Test, Build and Release apk
 on: 
   push: 
     branches: 
-      - main
+      - master
       - uat
       - live
     tags:
